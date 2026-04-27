@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XYAN12 | Portfolio</title>
+    <meta
+      name="description"
+      content="A bilingual portfolio showcasing selected public software, AI, data, and product projects by XYAN12."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-aura aura-one" aria-hidden="true"></div>
+    <div class="page-aura aura-two" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#hero">
+        <span class="brand-mark">XY</span>
+        <span class="brand-copy">
+          <strong>Xiaoyu</strong>
+          <span>@XYAN12</span>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#projects" data-i18n="nav.projects">Projects</a>
+        <a href="#stack" data-i18n="nav.stack">Tech Stack</a>
+        <a href="#responsibilities" data-i18n="nav.responsibilities">Focus</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+
+      <div class="language-switch" aria-label="Language switch">
+        <button type="button" class="lang-btn is-active" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="zh">中文</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero" class="hero section-shell">
+        <div class="hero-copy reveal">
+          <p class="eyebrow" data-i18n="hero.eyebrow">Selected Public Work</p>
+          <h1 data-i18n="hero.title">
+            Building thoughtful software across AI, data, and product experiences.
+          </h1>
+          <p class="hero-text" data-i18n="hero.description">
+            This portfolio highlights public GitHub projects spanning full-stack
+            development, interactive data tools, mobile apps, and AI-assisted workflows.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects" data-i18n="hero.primaryCta">
+              Explore Projects
+            </a>
+            <a
+              class="button button-secondary"
+              href="https://github.com/XYAN12"
+              target="_blank"
+              rel="noreferrer"
+              data-i18n="hero.secondaryCta"
+            >
+              View GitHub
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <article class="stat-card reveal">
+              <strong id="project-count">7</strong>
+              <span data-i18n="hero.stats.projects">Selected repositories</span>
+            </article>
+            <article class="stat-card reveal">
+              <strong>AI + Web + Mobile</strong>
+              <span data-i18n="hero.stats.scope">Cross-domain product scope</span>
+            </article>
+            <article class="stat-card reveal">
+              <strong>EN / 中文</strong>
+              <span data-i18n="hero.stats.bilingual">Bilingual presentation</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="hero-panel reveal">
+          <div class="hero-panel-card">
+            <p class="panel-label" data-i18n="hero.panelLabel">Portfolio Snapshot</p>
+            <div class="panel-grid">
+              <div>
+                <span class="panel-metric">7</span>
+                <p data-i18n="hero.panel.projects">Public projects curated for hiring and collaboration.</p>
+              </div>
+              <div>
+                <span class="panel-metric">6+</span>
+                <p data-i18n="hero.panel.stacks">Languages and frameworks used across recent repositories.</p>
+              </div>
+            </div>
+            <div class="hero-ribbon">
+              <span data-i18n="hero.ribbonOne">Full-stack delivery</span>
+              <span data-i18n="hero.ribbonTwo">AI workflow design</span>
+              <span data-i18n="hero.ribbonThree">Data storytelling</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section-shell reveal">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="about.eyebrow">About</p>
+          <h2 data-i18n="about.title">A practical builder with an eye for clarity and experience.</h2>
+        </div>
+        <div class="about-grid">
+          <article class="about-card">
+            <p data-i18n="about.body">
+              Across public repositories, the work consistently leans toward user-facing software:
+              apps that translate complex workflows into clear interfaces, whether that means an AI
+              resume pipeline, an events platform, or a collaborative whiteboard.
+            </p>
+          </article>
+          <article class="about-card">
+            <ul class="signal-list">
+              <li data-i18n="about.points.one">Comfortable moving between frontend polish, backend structure, and product thinking.</li>
+              <li data-i18n="about.points.two">Interested in AI-assisted tooling, interactive systems, and useful everyday software.</li>
+              <li data-i18n="about.points.three">Careful about privacy, presentation quality, and deployable project delivery.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="section-shell reveal">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="projects.eyebrow">Projects</p>
+          <h2 data-i18n="projects.title">Selected public repositories, shaped into recruiter-friendly case studies.</h2>
+          <p class="section-description" data-i18n="projects.description">
+            Each card summarizes project purpose, stack, and implementation highlights based on the repository README and structure.
+          </p>
+        </div>
+        <div id="projects-grid" class="projects-grid"></div>
+      </section>
+
+      <section id="stack" class="section-shell reveal">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="stack.eyebrow">Tech Stack</p>
+          <h2 data-i18n="stack.title">Tools that show up repeatedly across these builds.</h2>
+        </div>
+        <div id="stack-grid" class="stack-grid"></div>
+      </section>
+
+      <section id="responsibilities" class="section-shell reveal">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="responsibilities.eyebrow">Focus Areas</p>
+          <h2 data-i18n="responsibilities.title">What these repositories suggest about day-to-day contribution.</h2>
+        </div>
+        <div id="responsibility-grid" class="responsibility-grid"></div>
+      </section>
+
+      <section id="contact" class="section-shell reveal">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="contact.eyebrow">Contact</p>
+          <h2 data-i18n="contact.title">Open to software, AI, and product-oriented opportunities.</h2>
+          <p class="section-description" data-i18n="contact.description">
+            The safest public touchpoint for this portfolio is GitHub. Additional contact details can be shared privately when needed.
+          </p>
+        </div>
+        <div class="contact-card">
+          <div>
+            <p class="contact-label" data-i18n="contact.githubLabel">GitHub Profile</p>
+            <a href="https://github.com/XYAN12" target="_blank" rel="noreferrer">github.com/XYAN12</a>
+          </div>
+          <a
+            class="button button-primary"
+            href="https://github.com/XYAN12"
+            target="_blank"
+            rel="noreferrer"
+            data-i18n="contact.cta"
+          >
+            Open GitHub
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        <span>© <span id="year"></span> Xiaoyu / XYAN12.</span>
+        <span data-i18n="footer.note">Built as a GitHub Pages-ready bilingual portfolio.</span>
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
