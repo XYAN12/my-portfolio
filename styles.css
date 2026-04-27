@@ -15,6 +15,7 @@
   --radius-lg: 24px;
   --radius-md: 18px;
   --max-width: 1180px;
+  --header-offset: 112px;
 }
 
 * {
@@ -28,12 +29,13 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  padding-top: var(--header-offset);
   background:
     radial-gradient(circle at top left, rgba(146, 202, 255, 0.35), transparent 28%),
     radial-gradient(circle at bottom right, rgba(125, 162, 255, 0.18), transparent 22%),
     linear-gradient(180deg, #f8fbff 0%, #edf4fb 100%);
   color: var(--text);
-  font-family: "Manrope", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
   line-height: 1.6;
 }
 
@@ -47,7 +49,10 @@ a {
   text-decoration: none;
 }
 
-button {
+button,
+input,
+textarea,
+select {
   font: inherit;
 }
 
@@ -88,7 +93,7 @@ button {
 
 .site-header {
   width: min(calc(100% - 32px), var(--max-width));
-  margin: 18px auto 0;
+  margin: 0;
   padding: 14px 18px;
   display: flex;
   align-items: center;
@@ -96,11 +101,15 @@ button {
   gap: 18px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(248, 251, 255, 0.82);
   backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   box-shadow: var(--shadow);
-  position: sticky;
+  position: fixed;
   top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
 }
 
 .brand {
@@ -182,19 +191,27 @@ button {
 }
 
 main {
+  position: relative;
+  z-index: 1;
   padding-bottom: 64px;
 }
 
 .section-shell {
   width: min(calc(100% - 32px), var(--max-width));
-  margin: 28px auto 0;
+  margin: 0 auto;
+  scroll-margin-top: calc(var(--header-offset) + 18px);
+}
+
+main > .section-shell + .section-shell {
+  margin-top: clamp(30px, 5vw, 54px);
 }
 
 .hero {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 24px;
-  padding-top: 48px;
+  align-items: start;
+  padding-top: clamp(18px, 4vw, 42px);
 }
 
 .hero-copy,
@@ -211,22 +228,21 @@ main {
 }
 
 .hero-copy {
-  padding: 40px;
+  padding: clamp(28px, 4vw, 42px);
   border-radius: var(--radius-xl);
 }
 
 .hero h1,
 .section-heading h2 {
   margin: 0;
-  max-width: 14ch;
-  font-size: clamp(2.4rem, 5vw, 5.1rem);
-  line-height: 0.96;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.045em;
 }
 
 .hero h1 {
-  font-family: "Instrument Serif", serif;
   font-weight: 400;
+  max-width: 12.5ch;
+  font-size: clamp(2.45rem, 5vw, 4.35rem);
+  line-height: 1.02;
 }
 
 .hero-text,
@@ -239,7 +255,7 @@ main {
 
 .hero-text {
   max-width: 60ch;
-  font-size: 1.05rem;
+  font-size: clamp(1rem, 1.4vw, 1.08rem);
   margin: 22px 0 0;
 }
 
@@ -320,7 +336,7 @@ main {
 
 .hero-panel-card {
   width: 100%;
-  padding: 28px;
+  padding: clamp(24px, 3.5vw, 32px);
   border-radius: var(--radius-xl);
   overflow: hidden;
   background:
@@ -372,12 +388,23 @@ main {
 }
 
 .section-heading {
-  margin-bottom: 20px;
+  margin-bottom: clamp(22px, 3vw, 30px);
 }
 
 .section-heading h2 {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  max-width: 16ch;
+  max-width: 17ch;
+  font-size: clamp(1.85rem, 3.1vw, 2.95rem);
+  line-height: 1.08;
+}
+
+main > .section-shell:not(.hero) {
+  padding: clamp(52px, 8vw, 96px) clamp(22px, 4vw, 36px);
+  border-radius: 34px;
+  border: 1px solid rgba(145, 184, 224, 0.16);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.56), rgba(255, 255, 255, 0.28)),
+    rgba(244, 249, 255, 0.38);
+  box-shadow: 0 18px 46px rgba(109, 145, 184, 0.08);
 }
 
 .section-description {
@@ -525,7 +552,6 @@ main {
 }
 
 .mockup-title {
-  font-family: "Instrument Serif", serif;
   font-size: 2rem;
   line-height: 0.95;
   margin: 10px 0 18px;
@@ -571,7 +597,7 @@ main {
 }
 
 .project-content {
-  padding: 26px;
+  padding: 28px;
 }
 
 .project-header {
@@ -668,7 +694,7 @@ main {
 
 .site-footer {
   width: min(calc(100% - 32px), var(--max-width));
-  margin: 28px auto 24px;
+  margin: clamp(36px, 6vw, 56px) auto 24px;
   color: var(--muted);
   font-size: 0.92rem;
 }
@@ -716,6 +742,8 @@ main {
 
 @media (max-width: 860px) {
   .site-header {
+    top: 10px;
+    width: min(calc(100% - 20px), var(--max-width));
     border-radius: 28px;
     padding: 16px;
     display: grid;
@@ -724,10 +752,11 @@ main {
 
   .site-nav {
     justify-content: flex-start;
+    gap: 12px 14px;
   }
 
   .hero {
-    padding-top: 28px;
+    padding-top: 10px;
   }
 
   .hero-copy,
@@ -763,6 +792,11 @@ main {
   .responsibility-card,
   .contact-card {
     padding: 22px;
+  }
+
+  main > .section-shell:not(.hero) {
+    padding: clamp(48px, 10vw, 72px) 20px;
+    border-radius: 28px;
   }
 
   .project-header {

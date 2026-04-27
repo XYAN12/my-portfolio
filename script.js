@@ -468,6 +468,8 @@ const state = {
   lang: localStorage.getItem("portfolio-language") || "en"
 };
 
+let headerResizeObserver;
+
 function getByPath(object, path) {
   return path.split(".").reduce((value, key) => value?.[key], object);
 }
@@ -600,6 +602,29 @@ function applyLanguage(lang) {
   renderStack(lang);
   renderResponsibilities(lang);
   observeReveal();
+  requestAnimationFrame(syncHeaderOffset);
+}
+
+function syncHeaderOffset() {
+  const header = document.querySelector(".site-header");
+  if (!header) {
+    return;
+  }
+
+  const computedHeader = getComputedStyle(header);
+  const top = Number.parseFloat(computedHeader.top) || 0;
+  const height = Math.ceil(header.getBoundingClientRect().height + top + 16);
+  document.documentElement.style.setProperty("--header-offset", `${height}px`);
+}
+
+function initHeaderOffset() {
+  syncHeaderOffset();
+  window.addEventListener("resize", syncHeaderOffset);
+
+  if ("ResizeObserver" in window) {
+    headerResizeObserver = new ResizeObserver(() => syncHeaderOffset());
+    headerResizeObserver.observe(document.querySelector(".site-header"));
+  }
 }
 
 function observeReveal() {
@@ -635,6 +660,7 @@ function init() {
   document.getElementById("project-count").textContent = String(projects.length);
   document.getElementById("year").textContent = String(new Date().getFullYear());
   initLanguageSwitch();
+  initHeaderOffset();
   applyLanguage(state.lang);
 }
 
