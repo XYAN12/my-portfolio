@@ -14,7 +14,7 @@
   --radius-xl: 32px;
   --radius-lg: 24px;
   --radius-md: 18px;
-  --max-width: 1180px;
+  --max-width: 1600px;
   --header-offset: 112px;
 }
 
@@ -92,7 +92,7 @@ select {
 }
 
 .site-header {
-  width: min(calc(100% - 32px), var(--max-width));
+  width: min(90vw, var(--max-width));
   margin: 0;
   padding: 14px 18px;
   display: flex;
@@ -197,7 +197,7 @@ main {
 }
 
 .section-shell {
-  width: min(calc(100% - 32px), var(--max-width));
+  width: min(90vw, var(--max-width));
   margin: 0 auto;
   scroll-margin-top: calc(var(--header-offset) + 18px);
 }
@@ -261,8 +261,8 @@ main > .section-shell + .section-shell {
 
 .eyebrow {
   margin: 0 0 14px;
-  font-size: 0.8rem;
-  letter-spacing: 0.16em;
+  font-size: clamp(0.95rem, 1.1vw, 1.08rem);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent-deep);
   font-weight: 800;
@@ -348,9 +348,9 @@ main > .section-shell + .section-shell {
 .contact-label,
 .project-type {
   margin: 0;
-  font-size: 0.78rem;
+  font-size: clamp(0.88rem, 0.95vw, 1rem);
   text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.11em;
   color: var(--accent-deep);
   font-weight: 800;
 }
@@ -435,13 +435,15 @@ main > .section-shell:not(.hero) {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 24px;
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
+  height: 100%;
   overflow: hidden;
   border-radius: var(--radius-lg);
   transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
@@ -598,6 +600,9 @@ main > .section-shell:not(.hero) {
 
 .project-content {
   padding: 28px;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
 }
 
 .project-header {
@@ -639,7 +644,8 @@ main > .section-shell:not(.hero) {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 22px;
+  margin-top: auto;
+  padding-top: 22px;
 }
 
 .project-link {
@@ -693,7 +699,7 @@ main > .section-shell:not(.hero) {
 }
 
 .site-footer {
-  width: min(calc(100% - 32px), var(--max-width));
+  width: min(90vw, var(--max-width));
   margin: clamp(36px, 6vw, 56px) auto 24px;
   color: var(--muted);
   font-size: 0.92rem;
@@ -727,6 +733,12 @@ main > .section-shell:not(.hero) {
   }
 }
 
+@media (max-width: 1199px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 1080px) {
   .hero,
   .about-grid,
@@ -734,16 +746,12 @@ main > .section-shell:not(.hero) {
   .responsibility-grid {
     grid-template-columns: 1fr;
   }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 860px) {
   .site-header {
     top: 10px;
-    width: min(calc(100% - 20px), var(--max-width));
+    width: min(94vw, var(--max-width));
     border-radius: 28px;
     padding: 16px;
     display: grid;
@@ -778,7 +786,7 @@ main > .section-shell:not(.hero) {
   .section-shell,
   .site-header,
   .site-footer {
-    width: min(calc(100% - 20px), var(--max-width));
+    width: min(94vw, var(--max-width));
   }
 
   .hero h1,
@@ -801,5 +809,11 @@ main > .section-shell:not(.hero) {
 
   .project-header {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 767px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
   }
 }

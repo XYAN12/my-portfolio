@@ -54,13 +54,13 @@ const projects = [
     features: {
       en: [
         "Supports event, artist, venue, sponsor, photo, and homepage content management.",
-        "Combines public event discovery with authenticated administration and image upload flows.",
-        "Uses demo-safe showcase content suitable for portfolio presentation."
+        "Combines event discovery, authenticated administration, and image upload flows in one system.",
+        "Designed to support polished event pages alongside practical content operations."
       ],
       zh: [
         "支持活动、艺人、场馆、赞助商、照片与主页内容的集中管理。",
-        "同时覆盖公开展示、后台登录与图片上传等完整业务流程。",
-        "示例内容为演示用途，适合作为作品集项目展示。"
+        "同时覆盖活动浏览、后台登录与图片上传等完整业务流程。",
+        "兼顾页面展示效果与实际内容管理需求。"
       ]
     },
     tech: ["PHP", "CakePHP 5", "MariaDB", "Composer", "Authentication", "CRUD"],
@@ -293,12 +293,12 @@ const stackGroups = [
 const responsibilities = [
   {
     title: {
-      en: "User-Facing Product Thinking",
-      zh: "面向用户的产品思维"
+      en: "User-Centered Product Thinking",
+      zh: "以用户为中心的产品思维"
     },
     body: {
-      en: "Most repositories are built around a concrete user journey, not just an algorithm or isolated demo.",
-      zh: "这些仓库大多围绕明确的用户流程展开，而不只是单点算法或孤立演示。"
+      en: "I like building software around clear user journeys, turning complex tasks into interfaces that feel understandable and useful.",
+      zh: "我喜欢围绕清晰的用户流程构建软件，把复杂任务转化成更容易理解、也更实用的界面体验。"
     }
   },
   {
@@ -313,8 +313,8 @@ const responsibilities = [
   },
   {
     title: {
-      en: "AI-Assisted Tooling",
-      zh: "AI 辅助工具设计"
+      en: "AI-Enabled Tools",
+      zh: "AI 工具设计"
     },
     body: {
       en: "AI appears as a product capability: translation, analysis, rewriting, and structured workflow support.",
@@ -333,21 +333,21 @@ const copy = {
       contact: "Contact"
     },
     hero: {
-      eyebrow: "Selected Public Work",
+      eyebrow: "Software Portfolio",
       title: "Building thoughtful software across AI, data, and product experiences.",
       description:
-        "This portfolio highlights public GitHub projects spanning full-stack development, interactive data tools, mobile apps, and AI-assisted workflows.",
+        "I build practical software projects across AI, web development, data tools, mobile apps, and interactive systems.",
       primaryCta: "Explore Projects",
       secondaryCta: "View GitHub",
       stats: {
-        projects: "Selected repositories",
-        scope: "Cross-domain product scope",
+        projects: "Featured projects",
+        scope: "Cross-domain product work",
         bilingual: "Bilingual presentation"
       },
       panelLabel: "Portfolio Snapshot",
       panel: {
-        projects: "Public projects curated for hiring and collaboration.",
-        stacks: "Languages and frameworks used across recent repositories."
+        projects: "A selection of projects across software, AI, and interactive product design.",
+        stacks: "Experience spanning frontend, backend, mobile development, and data-driven tools."
       },
       ribbonOne: "Full-stack delivery",
       ribbonTwo: "AI workflow design",
@@ -357,7 +357,7 @@ const copy = {
       eyebrow: "About",
       title: "A practical builder with an eye for clarity and experience.",
       body:
-        "Across public repositories, the work consistently leans toward user-facing software: apps that translate complex workflows into clear interfaces, whether that means an AI resume pipeline, an events platform, or a collaborative whiteboard.",
+        "I enjoy building user-facing software that makes complex workflows feel clear and approachable, whether that means an AI resume assistant, an event platform, or a collaborative whiteboard.",
       points: {
         one: "Comfortable moving between frontend polish, backend structure, and product thinking.",
         two: "Interested in AI-assisted tooling, interactive systems, and useful everyday software.",
@@ -366,9 +366,9 @@ const copy = {
     },
     projects: {
       eyebrow: "Projects",
-      title: "Selected public repositories, shaped into recruiter-friendly case studies.",
+      title: "A selection of projects across AI, web development, data tools, and interactive systems.",
       description:
-        "Each card summarizes project purpose, stack, and implementation highlights based on the repository README and structure.",
+        "These projects reflect how I design, build, and improve practical software experiences.",
       featuresLabel: "Key features",
       repo: "GitHub Repo",
       live: "Live Demo"
@@ -379,18 +379,18 @@ const copy = {
     },
     responsibilities: {
       eyebrow: "Focus Areas",
-      title: "What these repositories suggest about day-to-day contribution."
+      title: "How I like to approach software projects."
     },
     contact: {
       eyebrow: "Contact",
       title: "Open to software, AI, and product-oriented opportunities.",
       description:
-        "The safest public touchpoint for this portfolio is GitHub. Additional contact details can be shared privately when needed.",
+        "You can find more of my work on GitHub. I am especially interested in learning-oriented, product-minded software opportunities.",
       githubLabel: "GitHub Profile",
       cta: "Open GitHub"
     },
     footer: {
-      note: "Built as a GitHub Pages-ready bilingual portfolio."
+      note: "A bilingual portfolio focused on software, AI, and product development."
     }
   },
   zh: {
@@ -402,21 +402,21 @@ const copy = {
       contact: "联系"
     },
     hero: {
-      eyebrow: "精选公开项目",
+      eyebrow: "软件作品集",
       title: "围绕 AI、数据与产品体验，持续构建有完成度的软件作品。",
       description:
-        "这个作品集基于公开 GitHub 仓库整理，涵盖全栈开发、交互式数据工具、移动应用与 AI 辅助工作流。",
+        "我关注 AI、Web 开发、数据工具、移动应用与交互式系统，也持续在这些方向打磨更实用的软件项目。",
       primaryCta: "查看项目",
       secondaryCta: "访问 GitHub",
       stats: {
-        projects: "精选仓库",
+        projects: "代表项目",
         scope: "跨领域产品实践",
         bilingual: "中英双语展示"
       },
       panelLabel: "作品集概览",
       panel: {
-        projects: "面向求职与协作场景整理的公开项目。",
-        stacks: "近期仓库中反复出现的语言与框架。"
+        projects: "涵盖软件开发、AI 应用与交互式产品设计的部分项目。",
+        stacks: "覆盖前端、后端、移动开发与数据驱动工具的实践经验。"
       },
       ribbonOne: "全栈交付",
       ribbonTwo: "AI 工作流设计",
@@ -426,7 +426,7 @@ const copy = {
       eyebrow: "关于我",
       title: "偏实战型的构建者，也重视表达清晰与体验质量。",
       body:
-        "从公开仓库来看，这些项目长期围绕“可被真实使用的软件”展开：把复杂流程转成清晰界面，无论是 AI 简历工作流、活动展示平台，还是协作式白板系统。",
+        "我喜欢做面向真实使用场景的软件，把复杂流程整理成更清晰、更容易上手的体验，无论是 AI 简历助手、活动展示平台，还是协作式白板系统。",
       points: {
         one: "能够在前端呈现、后端结构与产品思考之间切换。",
         two: "关注 AI 辅助工具、交互系统以及真正有用的日常软件。",
@@ -435,9 +435,9 @@ const copy = {
     },
     projects: {
       eyebrow: "项目",
-      title: "将公开仓库整理成更适合招聘与合作场景阅读的案例卡片。",
+      title: "这里展示了我在 AI、Web 开发、数据工具和交互式系统方向的部分项目。",
       description:
-        "每张卡片都基于仓库 README 与项目结构，总结项目目标、技术栈与实现亮点。",
+        "这些项目体现了我在设计、实现与打磨软件体验上的一些实践。",
       featuresLabel: "核心特性",
       repo: "GitHub 仓库",
       live: "在线演示"
@@ -448,18 +448,18 @@ const copy = {
     },
     responsibilities: {
       eyebrow: "能力侧重",
-      title: "这些仓库所反映出的日常工作方式与可承担内容。"
+      title: "我通常会如何理解和推进一个软件项目。"
     },
     contact: {
       eyebrow: "联系",
       title: "适合软件开发、AI 应用与产品导向岗位的作品展示。",
       description:
-        "公开层面最安全的联系方式是 GitHub。若需要进一步沟通，可以在私下场景再交换其他联系信息。",
+        "如果你想了解更多我的项目，可以先从 GitHub 开始。我也很期待继续学习和参与产品导向的软件实践。",
       githubLabel: "GitHub 主页",
       cta: "打开 GitHub"
     },
     footer: {
-      note: "这是一个可直接用于 GitHub Pages 的双语作品集。"
+      note: "一个围绕软件、AI 与产品开发的双语作品集。"
     }
   }
 };
