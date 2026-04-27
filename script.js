@@ -251,6 +251,27 @@ const stackGroups = [
   }
 ];
 
+const techIconMeta = {
+  JavaScript: { slug: "javascript", label: "JavaScript" },
+  Python: { slug: "python", label: "Python" },
+  Swift: { slug: "swift", label: "Swift" },
+  Java: { slug: "openjdk", label: "Java" },
+  PHP: { slug: "php", label: "PHP" },
+  R: { slug: "r", label: "R" },
+  React: { slug: "react", label: "React" },
+  FastAPI: { slug: "fastapi", label: "FastAPI" },
+  Streamlit: { slug: "streamlit", label: "Streamlit" },
+  CakePHP: { slug: "cakephp", label: "CakePHP" },
+  UIKit: { slug: "apple", label: "UIKit" },
+  Shiny: { slug: "r", label: "Shiny" },
+  Docker: { slug: "docker", label: "Docker" },
+  MariaDB: { slug: "mariadb", label: "MariaDB" },
+  "Core Data": { slug: "apple", label: "Core Data" },
+  Leaflet: { slug: "leaflet", label: "Leaflet" },
+  Plotly: { slug: "plotly", label: "Plotly" },
+  PyMuPDF: { slug: "python", label: "PyMuPDF" }
+};
+
 const responsibilities = [
   {
     title: {
@@ -461,6 +482,22 @@ function createMockup(visual, lang) {
   `;
 }
 
+function createTechIcon(name) {
+  const meta = techIconMeta[name];
+  if (!meta) return "";
+
+  return `
+    <img
+      class="tech-icon"
+      src="https://cdn.simpleicons.org/${meta.slug}"
+      alt="${meta.label} logo"
+      loading="lazy"
+      decoding="async"
+      onerror="this.style.display='none'"
+    />
+  `;
+}
+
 function renderProjects(lang) {
   const grid = document.getElementById("projects-grid");
   const labels = copy[lang].projects;
@@ -519,8 +556,17 @@ function renderStack(lang) {
       (group) => `
         <article class="stack-card reveal">
           <h3>${group.title[lang]}</h3>
-          <div class="chip-list">
-            ${group.items.map((item) => `<span class="chip">${item}</span>`).join("")}
+          <div class="chip-list tech-list">
+            ${group.items
+              .map(
+                (item) => `
+                  <span class="tech-chip">
+                    ${createTechIcon(item)}
+                    <span class="tech-name">${item}</span>
+                  </span>
+                `
+              )
+              .join("")}
           </div>
         </article>
       `

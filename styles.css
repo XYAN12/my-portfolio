@@ -693,6 +693,50 @@ main > .section-shell:not(.hero) {
   gap: 10px;
 }
 
+.tech-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tech-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(130, 164, 203, 0.16);
+  background: rgba(255, 255, 255, 0.74);
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.tech-chip:hover {
+  transform: translateY(-1px);
+  border-color: rgba(130, 164, 203, 0.28);
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.tech-icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.tech-icon[alt] {
+  color: initial;
+}
+
+.tech-name {
+  min-width: 0;
+  color: var(--text);
+  font-size: 0.94rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
 .contact-card {
   display: flex;
   justify-content: space-between;
@@ -792,6 +836,10 @@ main > .section-shell:not(.hero) {
   .contact-card {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .tech-list {
+    grid-template-columns: 1fr;
   }
 }
 
