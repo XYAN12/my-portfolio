@@ -451,6 +451,7 @@ const state = {
 };
 
 let headerResizeObserver;
+let revealObserver;
 
 function getByPath(object, path) {
   return path.split(".").reduce((value, key) => value?.[key], object);
@@ -496,6 +497,49 @@ function createTechIcon(name) {
       onerror="this.style.display='none'"
     />
   `;
+}
+
+function getHashTarget(hash = window.location.hash) {
+  if (!hash) {
+    return null;
+  }
+
+  const hashAliases = {
+    "#tech": "#stack"
+  };
+
+  const normalizedHash = hashAliases[hash] || hash;
+  return document.querySelector(normalizedHash);
+}
+
+function revealTree(target) {
+  if (!target) {
+    return;
+  }
+
+  if (target.classList.contains("reveal")) {
+    target.classList.add("is-visible");
+  }
+
+  target.querySelectorAll(".reveal").forEach((node) => {
+    node.classList.add("is-visible");
+  });
+}
+
+function syncHashTarget() {
+  const target = getHashTarget();
+  if (!target) {
+    return;
+  }
+
+  revealTree(target);
+
+  requestAnimationFrame(() => {
+    target.scrollIntoView({
+      block: "start",
+      inline: "nearest"
+    });
+  });
 }
 
 function renderProjects(lang) {
@@ -609,7 +653,10 @@ function applyLanguage(lang) {
   renderStack(lang);
   renderResponsibilities(lang);
   observeReveal();
-  requestAnimationFrame(syncHeaderOffset);
+  requestAnimationFrame(() => {
+    syncHeaderOffset();
+    syncHashTarget();
+  });
 }
 
 function syncHeaderOffset() {
@@ -635,22 +682,27 @@ function initHeaderOffset() {
 }
 
 function observeReveal() {
+  if (revealObserver) {
+    revealObserver.disconnect();
+  }
+
   const elements = document.querySelectorAll(".reveal");
-  const observer = new IntersectionObserver(
+  revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
+          revealObserver.unobserve(entry.target);
         }
       });
     },
     {
-      threshold: 0.16
+      threshold: 0.01,
+      rootMargin: "0px 0px -8% 0px"
     }
   );
 
-  elements.forEach((element) => observer.observe(element));
+  elements.forEach((element) => revealObserver.observe(element));
 }
 
 function initLanguageSwitch() {
@@ -668,6 +720,7 @@ function init() {
   document.getElementById("year").textContent = String(new Date().getFullYear());
   initLanguageSwitch();
   initHeaderOffset();
+  window.addEventListener("hashchange", syncHashTarget);
   applyLanguage(state.lang);
 }
 
