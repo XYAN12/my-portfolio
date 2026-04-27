@@ -225,45 +225,6 @@ const projects = [
       pills: ["RMI", "Sync", "GUI"]
     }
   },
-  {
-    slug: "study-abroad",
-    type: {
-      en: "Interactive Simulation / Web",
-      zh: "互动模拟 / Web"
-    },
-    title: {
-      en: "Study Abroad Simulator",
-      zh: "留学生活模拟器"
-    },
-    description: {
-      en: "A browser-based simulation exploring month-by-month decisions, resources, and trade-offs in student life abroad.",
-      zh: "一个浏览器端模拟项目，用按月推进的方式呈现留学生活中的决策、资源与取舍。"
-    },
-    features: {
-      en: [
-        "Tracks time, budget, and player status through chart-driven interfaces.",
-        "Uses branching options and modal prompts to create a lightweight decision game loop.",
-        "Ships as a simple static site that can be published directly via GitHub Pages."
-      ],
-      zh: [
-        "通过图表界面追踪时间、预算与角色状态。",
-        "使用分支选项与弹窗提示构建轻量决策循环。",
-        "作为纯静态站点实现，可直接部署到 GitHub Pages。"
-      ]
-    },
-    tech: ["HTML", "CSS", "JavaScript", "Bootstrap", "Chart.js", "GitHub Pages"],
-    repo: "https://github.com/XYAN12/StudyAbroadSimulator",
-    live: "https://xyan12.github.io/StudyAbroadSimulator/",
-    visual: {
-      kind: "mockup",
-      variant: "study",
-      kicker: {
-        en: "Decision Simulator",
-        zh: "决策模拟"
-      },
-      pills: ["Static Site", "Charts", "Game Loop"]
-    }
-  }
 ];
 
 const stackGroups = [
