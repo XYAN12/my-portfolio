@@ -377,23 +377,23 @@ export const copy = {
     chatbot: {
       buttonLabel: "Open portfolio chatbot",
       title: "Portfolio Assistant",
-      subtitle: "Ask about projects, skills, tech stack, or experience.",
+      subtitle:
+        "Hi, I’m Xiaoyu’s portfolio assistant. Ask me about projects, skills, tech stack, or experience.",
       inputLabel: "Ask a portfolio question",
-      placeholder: "Ask about Resume Optimizer, TaskMaster, or Xiaoyu's stack...",
+      placeholder: "Ask about Xiaoyu's projects, skills, or tech stack...",
       send: "Send",
-      emptyState: "Ask a question and I’ll answer only from Xiaoyu’s portfolio data.",
-      stepsTitle: "Visible process",
-      working: "Checking the portfolio context...",
-      stepOne: "Understanding the question",
-      stepTwo: "Searching portfolio data",
-      stepThree: "Selecting relevant projects or skills",
-      stepFour: "Generating final answer",
-      restricted:
-        "Answers are limited to sanitized portfolio and project information.",
+      emptyState:
+        "Hi, I’m Xiaoyu’s portfolio assistant. Ask me about projects, skills, tech stack, or experience.",
+      processTitle: "Process",
+      working: "Looking through Xiaoyu's portfolio...",
+      stepOne: "Parsed question",
+      stepTwo: "Checked portfolio data",
+      stepThree: "Found relevant projects",
+      stepFour: "Generated answer",
       unavailable:
         "The portfolio assistant is temporarily unavailable. Please try again shortly.",
       endpointMissing:
-        "The portfolio chatbot endpoint is not configured yet. Add the Cloudflare Worker URL to the page config before deploying.",
+        "The portfolio chatbot endpoint is not configured yet. Please try again shortly.",
       redirect:
         "I can help with Xiaoyu's portfolio, projects, skills, tech stack, and experience. Try asking about a specific project or technology."
     }
@@ -469,18 +469,19 @@ export const copy = {
     chatbot: {
       buttonLabel: "打开作品集聊天助手",
       title: "作品集助手",
-      subtitle: "可以问我项目、技能、技术栈或经验相关问题。",
+      subtitle:
+        "你好，我是 Xiaoyu 的作品集助手。你可以问我关于项目、技能、技术栈或经历的问题。",
       inputLabel: "输入作品集相关问题",
-      placeholder: "例如：Resume Optimizer 做了什么？TaskMaster 用了哪些技术？",
+      placeholder: "例如：介绍xiaoyu的项目或技能",
       send: "发送",
-      emptyState: "欢迎提问，我只会基于 Xiaoyu 公开作品集中的信息回答。",
-      stepsTitle: "可见步骤",
-      working: "正在检索作品集信息...",
-      stepOne: "理解问题",
-      stepTwo: "搜索作品集数据",
-      stepThree: "选择相关项目或技能",
-      stepFour: "生成最终回答",
-      restricted: "回答范围仅限经过整理的作品集与项目公开信息。",
+      emptyState:
+        "你好，我是 Xiaoyu 的作品集助手。你可以问我关于项目、技能、技术栈或经历的问题。",
+      processTitle: "回答过程",
+      working: "正在查看 Xiaoyu 的作品集信息...",
+      stepOne: "已解析问题",
+      stepTwo: "已检查作品集数据",
+      stepThree: "已找到相关项目",
+      stepFour: "已生成回答",
       unavailable: "作品集助手暂时不可用，请稍后再试。",
       endpointMissing: "聊天接口尚未配置，请先在页面配置中填写 Cloudflare Worker 地址。",
       redirect:

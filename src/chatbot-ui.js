@@ -8,16 +8,25 @@ function createButtonIcon(document) {
 }
 
 function createMessageBubble(document, className, text) {
-  const bubble = document.createElement("p");
+  const bubble = document.createElement("div");
   bubble.classList.add(className);
   bubble.textContent = text;
   return bubble;
 }
 
-function createStepItem(document, text) {
+function createStepItem(document, text, complete = true) {
   const item = document.createElement("li");
   item.classList.add("chatbot-step");
-  item.textContent = text;
+
+  const icon = document.createElement("span");
+  icon.classList.add("chatbot-step-icon");
+  icon.textContent = complete ? "✓" : "•";
+
+  const label = document.createElement("span");
+  label.classList.add("chatbot-step-label");
+  label.textContent = text;
+
+  item.append(icon, label);
   return item;
 }
 
@@ -74,40 +83,64 @@ export function createChatbotInterface({
   header.classList.add("chatbot-header");
   panel.appendChild(header);
 
+  const headerMain = document.createElement("div");
+  headerMain.classList.add("chatbot-header-main");
+  header.appendChild(headerMain);
+
   const title = document.createElement("h3");
-  header.appendChild(title);
+  headerMain.appendChild(title);
 
   const subtitle = document.createElement("p");
   subtitle.classList.add("chatbot-subtitle");
-  header.appendChild(subtitle);
+  headerMain.appendChild(subtitle);
 
-  const status = document.createElement("p");
-  status.classList.add("chatbot-status");
-  panel.appendChild(status);
+  const closeButton = document.createElement("button");
+  closeButton.type = "button";
+  closeButton.classList.add("chatbot-close");
+  closeButton.setAttribute("aria-label", "Close chat");
+  closeButton.textContent = "×";
+  header.appendChild(closeButton);
 
   const messages = document.createElement("div");
   messages.classList.add("chatbot-messages");
   panel.appendChild(messages);
 
-  const answer = createMessageBubble(document, "chatbot-answer", "");
-  const note = createMessageBubble(document, "chatbot-note", "");
-  messages.append(answer, note);
+  const message = document.createElement("div");
+  message.classList.add("chat-message", "assistant");
+  messages.appendChild(message);
 
-  const stepsTitle = document.createElement("p");
-  stepsTitle.classList.add("chatbot-steps-title");
-  panel.appendChild(stepsTitle);
+  const answer = createMessageBubble(document, "chatbot-answer", "");
+  message.append(answer);
+
+  const process = document.createElement("details");
+  process.classList.add("chatbot-process");
+  process.hidden = true;
+  process.open = true;
+  message.appendChild(process);
+
+  const processSummary = document.createElement("summary");
+  processSummary.classList.add("chatbot-process-summary");
+  process.appendChild(processSummary);
+
+  const processBody = document.createElement("div");
+  processBody.classList.add("chatbot-process-body");
+  process.appendChild(processBody);
 
   const stepsList = document.createElement("ol");
   stepsList.classList.add("chatbot-steps");
-  panel.appendChild(stepsList);
+  processBody.appendChild(stepsList);
+
+  const inputArea = document.createElement("div");
+  inputArea.classList.add("chatbot-input-area");
+  panel.appendChild(inputArea);
 
   const form = document.createElement("form");
   form.classList.add("chatbot-form");
-  panel.appendChild(form);
+  inputArea.appendChild(form);
 
   const input = document.createElement("textarea");
   input.classList.add("chatbot-input");
-  input.rows = 3;
+  input.rows = 1;
   form.appendChild(input);
 
   const submit = document.createElement("button");
@@ -117,40 +150,49 @@ export function createChatbotInterface({
 
   const state = {
     open: false,
-    endpoint: resolveEndpoint(endpoint)
+    endpoint: resolveEndpoint(endpoint),
+    processVisible: false
   };
+
+  function resetInput() {
+    input.value = "";
+    input.style.height = "";
+  }
 
   function renderStaticCopy() {
     const lang = getLanguage();
     const chatbotCopy = getChatbotCopy(lang);
 
     button.setAttribute("aria-label", chatbotCopy.buttonLabel);
+    button.setAttribute("aria-expanded", String(state.open));
     buttonLabel.textContent = lang === "zh" ? "助手" : "Chat";
     title.textContent = chatbotCopy.title;
-    subtitle.textContent = chatbotCopy.subtitle;
-    stepsTitle.textContent = chatbotCopy.stepsTitle;
+    subtitle.textContent = "";
+    processSummary.textContent = chatbotCopy.processTitle;
     input.setAttribute("aria-label", chatbotCopy.inputLabel);
     input.placeholder = chatbotCopy.placeholder;
     submit.textContent = chatbotCopy.send;
-    note.textContent = chatbotCopy.restricted;
 
     if (!answer.textContent) {
       answer.textContent = chatbotCopy.emptyState;
     }
-
-    if (!status.textContent) {
-      status.textContent = chatbotCopy.restricted;
-    }
   }
 
   function renderSteps(steps, working = false) {
-    stepsList.replaceChildren(...steps.map((step) => createStepItem(document, step)));
+    const items = steps.map((step, index) =>
+      createStepItem(document, step, !working || index < steps.length - 1)
+    );
+    stepsList.replaceChildren(...items);
+    state.processVisible = steps.length > 0;
+    process.hidden = !state.processVisible;
     panel.setAttribute("aria-busy", String(working));
   }
 
   function setOpen(nextOpen) {
     state.open = nextOpen;
     panel.hidden = !nextOpen;
+    panel.setAttribute("aria-hidden", String(!nextOpen));
+    button.setAttribute("aria-expanded", String(nextOpen));
     shell.classList.toggle("is-open", nextOpen);
   }
 
@@ -162,19 +204,17 @@ export function createChatbotInterface({
 
     if (!question) {
       answer.textContent = chatbotCopy.emptyState;
-      status.textContent = chatbotCopy.restricted;
-      renderSteps(getVisibleSteps(lang), false);
+      process.hidden = true;
       return;
     }
 
     if (!state.endpoint) {
       answer.textContent = chatbotCopy.endpointMissing;
-      status.textContent = chatbotCopy.unavailable;
       renderSteps(getVisibleSteps(lang), false);
       return;
     }
 
-    status.textContent = chatbotCopy.working;
+    resetInput();
     answer.textContent = chatbotCopy.working;
     renderSteps(getVisibleSteps(lang), true);
     submit.disabled = true;
@@ -194,11 +234,9 @@ export function createChatbotInterface({
       const payload = await response.json();
 
       answer.textContent = payload.answer || chatbotCopy.unavailable;
-      status.textContent = payload.error ? chatbotCopy.unavailable : chatbotCopy.restricted;
       renderSteps(payload.steps || getVisibleSteps(lang), false);
     } catch (error) {
       answer.textContent = chatbotCopy.unavailable;
-      status.textContent = chatbotCopy.unavailable;
       renderSteps(getVisibleSteps(lang), false);
     } finally {
       submit.disabled = false;
@@ -206,17 +244,37 @@ export function createChatbotInterface({
   }
 
   function refreshCopy() {
-    const lang = getLanguage();
-    const chatbotCopy = getChatbotCopy(lang);
     renderStaticCopy();
-    if (!stepsList.children.length) {
-      renderSteps(getVisibleSteps(lang), false);
+    process.hidden = !state.processVisible;
+  }
+
+  function handleDocumentClick(event) {
+    if (!state.open) {
+      return;
     }
-    note.textContent = chatbotCopy.restricted;
+
+    const target = event.target;
+    if (target === shell) {
+      setOpen(false);
+      return;
+    }
+
+    if (!shell.contains(target)) {
+      setOpen(false);
+    }
+  }
+
+  function handleDocumentKeydown(event) {
+    if (state.open && event.key === "Escape") {
+      setOpen(false);
+    }
   }
 
   button.addEventListener("click", () => setOpen(!state.open));
   form.addEventListener("submit", handleSubmit);
+  closeButton.addEventListener("click", () => setOpen(false));
+  document.addEventListener("click", handleDocumentClick);
+  document.addEventListener("keydown", handleDocumentKeydown);
 
   mount.appendChild(shell);
   refreshCopy();
@@ -225,12 +283,23 @@ export function createChatbotInterface({
     shell,
     button,
     panel,
+    header: {
+      title,
+      subtitle
+    },
     form,
     input,
     submit,
+    closeButton,
+    message,
     messages: {
-      answer,
-      note
+      answer
+    },
+    process: {
+      container: process,
+      summary: processSummary,
+      body: processBody,
+      steps: stepsList
     },
     renderSteps,
     refreshCopy,

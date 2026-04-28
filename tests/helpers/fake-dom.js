@@ -3,12 +3,18 @@ class FakeEvent {
     this.type = type;
     this.bubbles = Boolean(options.bubbles);
     this.defaultPrevented = false;
+    this.propagationStopped = false;
     this.target = null;
     this.currentTarget = null;
+    this.key = options.key ?? "";
   }
 
   preventDefault() {
     this.defaultPrevented = true;
+  }
+
+  stopPropagation() {
+    this.propagationStopped = true;
   }
 }
 
@@ -91,6 +97,17 @@ class FakeElement {
     return node;
   }
 
+  contains(node) {
+    let current = node;
+    while (current) {
+      if (current === this) {
+        return true;
+      }
+      current = current.parentNode;
+    }
+    return false;
+  }
+
   replaceChildren(...nodes) {
     this.children = [];
     nodes.forEach((node) => this.appendChild(node));
@@ -123,10 +140,13 @@ class FakeElement {
   }
 
   dispatchEvent(event) {
-    event.target = this;
+    event.target ??= this;
     event.currentTarget = this;
     const listeners = this.listeners.get(event.type) ?? [];
     listeners.forEach((listener) => listener(event));
+    if (event.bubbles && !event.propagationStopped && this.parentNode?.dispatchEvent) {
+      this.parentNode.dispatchEvent(event);
+    }
     return !event.defaultPrevented;
   }
 
@@ -145,11 +165,26 @@ class FakeElement {
 
 class FakeDocument {
   constructor() {
+    this.listeners = new Map();
     this.body = this.createElement("body");
+    this.body.parentNode = this;
   }
 
   createElement(tagName) {
     return new FakeElement(tagName, this);
+  }
+
+  addEventListener(type, listener) {
+    const listeners = this.listeners.get(type) ?? [];
+    listeners.push(listener);
+    this.listeners.set(type, listeners);
+  }
+
+  dispatchEvent(event) {
+    event.currentTarget = this;
+    const listeners = this.listeners.get(event.type) ?? [];
+    listeners.forEach((listener) => listener(event));
+    return !event.defaultPrevented;
   }
 }
 
