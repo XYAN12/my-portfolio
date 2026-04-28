@@ -1,6 +1,8 @@
 # XYAN12 Portfolio
 
 This repository contains Xiaoyu's bilingual portfolio site plus a separate Cloudflare Workers chatbot backend. The frontend stays fully static for GitHub Pages, while the Worker handles all DeepSeek API calls securely with environment variables, validation, and request controls.
+<br><br>
+Please visit my portfolio page here: https://xyan12.github.io/my-portfolio/
 
 ## Project Overview
 
