@@ -32,6 +32,15 @@ function splitAllowedOrigins(value = "") {
     .filter(Boolean);
 }
 
+/** Normalize scheme + host (+ port) so GitHub Pages origins match regardless of hostname casing. */
+function canonicalOrigin(origin) {
+  try {
+    return new URL(origin).origin;
+  } catch {
+    return "";
+  }
+}
+
 function isAllowedOrigin(origin, env) {
   if (!origin) {
     return false;
@@ -41,8 +50,13 @@ function isAllowedOrigin(origin, env) {
     return true;
   }
 
+  const requestOrigin = canonicalOrigin(origin);
+  if (!requestOrigin) {
+    return false;
+  }
+
   const allowedOrigins = splitAllowedOrigins(env.ALLOWED_FRONTEND_ORIGIN);
-  return allowedOrigins.includes(origin);
+  return allowedOrigins.some((allowed) => canonicalOrigin(allowed) === requestOrigin);
 }
 
 function buildCorsHeaders(request, env) {

@@ -189,3 +189,27 @@ test("worker hides API keys and raw provider errors from the client", async () =
   assert.match(payload.error, /temporarily unavailable/i);
   assert.doesNotMatch(JSON.stringify(payload), /deepseek-secret/);
 });
+
+test("worker matches ALLOWED_FRONTEND_ORIGIN case-insensitively (GitHub Pages Origin)", async () => {
+  const handler = createChatHandler({
+    env: {
+      DEEPSEEK_API_KEY: "test-secret",
+      ALLOWED_FRONTEND_ORIGIN: "https://XYAN12.github.io"
+    },
+    fetchImpl: async () => {
+      throw new Error("should not be called");
+    }
+  });
+
+  const request = new Request("https://worker.example/api/chat", {
+    method: "OPTIONS",
+    headers: {
+      origin: "https://xyan12.github.io"
+    }
+  });
+
+  const response = await handler(request);
+
+  assert.equal(response.status, 204);
+  assert.equal(response.headers.get("access-control-allow-origin"), "https://xyan12.github.io");
+});
