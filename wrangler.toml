@@ -3,4 +3,4 @@ main = "worker/src/index.js"
 compatibility_date = "2026-04-01"
 
 [vars]
-ALLOWED_FRONTEND_ORIGIN = "https://<your-github-username>.github.io"
+ALLOWED_FRONTEND_ORIGIN = "https://XYAN12.github.io"
