@@ -1,0 +1,15 @@
+{
+  "name": "xyan12-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "test:frontend": "node --test tests/chatbot-ui.test.js",
+    "test:worker": "node --test tests/worker.test.js",
+    "worker:dev": "wrangler dev",
+    "worker:deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.13.2"
+  }
+}

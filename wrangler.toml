@@ -1,0 +1,6 @@
+name = "xyan12-portfolio-chatbot"
+main = "worker/src/index.js"
+compatibility_date = "2026-04-01"
+
+[vars]
+ALLOWED_FRONTEND_ORIGIN = "https://<your-github-username>.github.io"
