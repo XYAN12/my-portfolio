@@ -17,7 +17,7 @@ test("chatbot button renders and toggles the floating panel", async () => {
     fetchImpl: async () =>
       new Response(
         JSON.stringify({
-          answer: "Resume Optimizer is an AI workflow project built with React and FastAPI.",
+          answer: "Skipisode is a Manifest V3 YouTube skip extension built with TypeScript and Vite.",
           steps: [
             "Parsed question",
             "Checked portfolio data",
@@ -147,7 +147,7 @@ test("process is rendered inside the assistant message below the answer", async 
     fetchImpl: async () =>
       new Response(
         JSON.stringify({
-          answer: "Resume Optimizer combines React, FastAPI, Docker, and PDF export.",
+          answer: "Craft Haven combines CakePHP 5, MariaDB, Bootstrap, authentication, and email workflows.",
           steps: [
             "Parsed question",
             "Checked portfolio data",
@@ -165,7 +165,7 @@ test("process is rendered inside the assistant message below the answer", async 
   });
 
   chatbot.button.click();
-  chatbot.input.value = "Tell me about Resume Optimizer";
+  chatbot.input.value = "Tell me about Craft Haven";
   await chatbot.handleSubmit(createEvent("submit"));
 
   assert.equal(chatbot.process.container.hidden, false);

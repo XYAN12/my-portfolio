@@ -507,16 +507,16 @@ main > .section-shell:not(.hero) {
   left: -28px;
 }
 
-.project-mockup.resume {
-  background: linear-gradient(135deg, #dff1ff, #f6fbff);
+.project-mockup.skipisode {
+  background: linear-gradient(135deg, #f2e7dd, #f9f2ea);
 }
 
 .project-mockup.events {
   background: linear-gradient(135deg, #e4f3ff, #edf7ff 45%, #d6ebff);
 }
 
-.project-mockup.pdf {
-  background: linear-gradient(135deg, #edf7ff, #ffffff);
+.project-mockup.craft {
+  background: linear-gradient(135deg, #fff0df, #f7fbf7);
 }
 
 .project-mockup.whiteboard {
@@ -988,14 +988,14 @@ main > .section-shell:not(.hero) {
 }
 
 .reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-ready .reveal:not(.is-visible) {
   opacity: 0;
   transform: translateY(26px);
   transition: opacity 600ms ease, transform 600ms ease;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 @keyframes drift {

@@ -69,7 +69,7 @@ test("worker uses DEEPSEEK_API_KEY from env when calling the provider", async ()
           choices: [
             {
               message: {
-                content: "Resume Optimizer combines React, FastAPI, Docker, and PDF export."
+                content: "Skipisode combines TypeScript, Vite, Vitest, and Manifest V3 extension APIs."
               }
             }
           ]
@@ -84,7 +84,7 @@ test("worker uses DEEPSEEK_API_KEY from env when calling the provider", async ()
   });
 
   const response = await handler(
-    createRequest({ question: "Tell me about the Resume Optimizer tech stack", language: "en" })
+    createRequest({ question: "Tell me about the Skipisode tech stack", language: "en" })
   );
 
   assert.equal(response.status, 200);
@@ -145,7 +145,7 @@ test("worker returns a safe formatted answer", async () => {
             {
               message: {
                 content:
-                  "Xiaoyu has experience across React, FastAPI, Swift, Java, PHP, R, Docker, and data visualization tools."
+                  "Xiaoyu has experience across TypeScript, Vite, CakePHP, Bootstrap, Swift, Java, PHP, R, and data visualization tools."
               }
             }
           ]
@@ -166,7 +166,7 @@ test("worker returns a safe formatted answer", async () => {
   assert.equal(response.status, 200);
   assert.ok(Array.isArray(payload.steps));
   assert.equal(payload.steps.length, 4);
-  assert.match(payload.answer, /React|FastAPI|Swift|Docker/);
+  assert.match(payload.answer, /TypeScript|Vite|CakePHP|Bootstrap|Swift|Java/);
 });
 
 test("worker hides API keys and raw provider errors from the client", async () => {
@@ -181,7 +181,7 @@ test("worker hides API keys and raw provider errors from the client", async () =
   });
 
   const response = await handler(
-    createRequest({ question: "Tell me about the PDF Translator", language: "en" })
+    createRequest({ question: "Tell me about Craft Haven", language: "en" })
   );
   const payload = await response.json();
 

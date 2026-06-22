@@ -1,40 +1,40 @@
 export const projects = [
   {
-    slug: "resume-optimizer",
+    slug: "skipisode",
     type: {
-      en: "AI Workflow / Full-Stack",
-      zh: "AI 工作流 / 全栈"
+      en: "Browser Extension / YouTube Utility",
+      zh: "浏览器扩展 / YouTube 工具"
     },
     title: {
-      en: "Resume Optimizer Agent",
-      zh: "简历优化 Agent"
+      en: "Skipisode",
+      zh: "Skipisode 剧集跳过助手"
     },
     description: {
-      en: "A full-stack application for resume analysis and rewriting with a staged, fact-constrained agent workflow.",
-      zh: "一个用于简历分析与优化改写的全栈应用，采用分阶段、受事实约束的 Agent 工作流。"
+      en: "A Manifest V3 Chrome and Brave extension for saving reusable YouTube intro and outro skip rules.",
+      zh: "一个 Manifest V3 Chrome / Brave 扩展，用于保存可复用的 YouTube 片头与片尾跳过规则。"
     },
     features: {
       en: [
-        "Separates resume parsing, JD analysis, gap analysis, rewriting, and export into explicit services.",
-        "Requires analysis before rewrite, helping keep suggestions grounded instead of generating unsupported claims.",
-        "Exports optimized output to Markdown, DOCX, and PDF with Docker-ready local deployment."
+        "Saves intro endpoints from the current timestamp and outro starts from remaining time.",
+        "Reuses skip rules across video, playlist, and channel scopes with deterministic priority.",
+        "Keeps the in-page UI compact with a draggable button and testable TypeScript rule modules."
       ],
       zh: [
-        "将简历解析、JD 分析、差距评估、改写与导出拆分为清晰的服务模块。",
-        "先分析、后确认、再改写，尽量避免生成缺乏依据的内容。",
-        "支持导出 Markdown、DOCX、PDF，并提供 Docker 化部署方案。"
+        "可从当前播放时间保存片头结束点，并用剩余时间记录片尾开始点。",
+        "支持按单个视频、播放列表与频道范围复用规则，并保持确定性的优先级。",
+        "页面内只保留可拖动圆形按钮和紧凑控制面板，核心规则逻辑由 TypeScript 模块和测试覆盖。"
       ]
     },
-    tech: ["Python", "FastAPI", "React", "Vite", "Docker", "PDF Export"],
-    repo: "https://github.com/XYAN12/ResumeOptimizer",
+    tech: ["TypeScript", "Vite", "Vitest", "Manifest V3", "Chrome Extensions", "chrome.storage.local"],
+    repo: "https://github.com/XYAN12/episode-skip",
     visual: {
       kind: "mockup",
-      variant: "resume",
+      variant: "skipisode",
       kicker: {
-        en: "Fact-Constrained Agent",
-        zh: "事实约束 Agent"
+        en: "YouTube Skip Rules",
+        zh: "YouTube 跳过规则"
       },
-      pills: ["Parser", "Analysis", "Rewrite"]
+      pills: ["Intro", "Outro", "Playlist"]
     }
   },
   {
@@ -113,41 +113,41 @@ export const projects = [
     }
   },
   {
-    slug: "pdf-translator",
+    slug: "craft-haven",
     type: {
-      en: "AI Utility / Document Tool",
-      zh: "AI 工具 / 文档处理"
+      en: "E-commerce Platform / Full-Stack",
+      zh: "电商平台 / 全栈"
     },
     title: {
-      en: "PDF Translator",
-      zh: "PDF 翻译助手"
+      en: "Craft Haven E-commerce",
+      zh: "Craft Haven 手工艺品电商"
     },
     description: {
-      en: "A Streamlit app for translating English PDF body text into Chinese and generating structured bilingual summaries.",
-      zh: "一个基于 Streamlit 的 PDF 翻译工具，可将英文正文翻译为中文，并生成结构化双语摘要。"
+      en: "A CakePHP-based e-commerce demo application for handcrafted products with customer-facing and admin workflows.",
+      zh: "一个基于 CakePHP 的手工艺品电商演示项目，覆盖顾客端购物流程与后台管理功能。"
     },
     features: {
       en: [
-        "Extracts and replaces text blocks using PyMuPDF instead of full-page OCR.",
-        "Generates translated PDF output plus markdown-style bilingual summaries.",
-        "Supports configurable OpenAI-compatible or local LLM endpoints and simple translation caching."
+        "Implements product browsing, authentication, authorization, admin management, and email-related workflows.",
+        "Uses CakePHP 5 with MariaDB by default and SQLite support for automated tests.",
+        "Includes documented setup, migrations, code checks, static analysis, and demo screenshots."
       ],
       zh: [
-        "使用 PyMuPDF 提取并替换文本块，而不是依赖整页 OCR。",
-        "可生成翻译后的 PDF，同时输出 Markdown 风格的双语摘要。",
-        "支持兼容 OpenAI 的接口或本地模型服务，并带有简单缓存机制。"
+        "实现商品浏览、认证、授权、后台管理与邮件相关流程。",
+        "默认使用 CakePHP 5 与 MariaDB，并支持 SQLite 测试环境。",
+        "提供环境配置、数据库迁移、代码检查、静态分析与项目截图说明。"
       ]
     },
-    tech: ["Python", "Streamlit", "PyMuPDF", "LLM API", "Markdown", "PDF Processing"],
-    repo: "https://github.com/XYAN12/pdfTranslator",
+    tech: ["PHP", "CakePHP 5", "MariaDB", "SQLite", "Bootstrap", "PHPMailer", "Composer"],
+    repo: "https://github.com/XYAN12/craft-haven-ecommerce",
     visual: {
       kind: "mockup",
-      variant: "pdf",
+      variant: "craft",
       kicker: {
-        en: "Translation + Summary",
-        zh: "翻译 + 摘要"
+        en: "Products + Admin",
+        zh: "商品 + 后台"
       },
-      pills: ["PDF", "Summary", "Bilingual"]
+      pills: ["Products", "Auth", "Email"]
     }
   },
   {
@@ -233,43 +233,45 @@ export const stackGroups = [
       en: "Languages",
       zh: "语言"
     },
-    items: ["JavaScript", "Python", "Swift", "Java", "PHP", "R"]
+    items: ["TypeScript", "JavaScript", "Python", "Swift", "Java", "PHP", "R"]
   },
   {
     title: {
       en: "Frameworks",
       zh: "框架"
     },
-    items: ["React", "FastAPI", "Streamlit", "CakePHP", "UIKit", "Shiny"]
+    items: ["Vite", "Vitest", "CakePHP", "Bootstrap", "UIKit", "Shiny"]
   },
   {
     title: {
       en: "Data & Infrastructure",
       zh: "数据与基础设施"
     },
-    items: ["Docker", "MariaDB", "Core Data", "Leaflet", "Plotly", "PyMuPDF"]
+    items: ["Chrome Extensions", "Manifest V3", "MariaDB", "SQLite", "Core Data", "Leaflet", "Plotly"]
   }
 ];
 
 export const techIconMeta = {
+  TypeScript: { slug: "typescript", label: "TypeScript" },
   JavaScript: { slug: "javascript", label: "JavaScript" },
   Python: { slug: "python", label: "Python" },
   Swift: { slug: "swift", label: "Swift" },
   Java: { slug: "openjdk", label: "Java" },
   PHP: { slug: "php", label: "PHP" },
   R: { slug: "r", label: "R" },
-  React: { slug: "react", label: "React" },
-  FastAPI: { slug: "fastapi", label: "FastAPI" },
-  Streamlit: { slug: "streamlit", label: "Streamlit" },
+  Vite: { slug: "vite", label: "Vite" },
+  Vitest: { slug: "vitest", label: "Vitest" },
   CakePHP: { slug: "cakephp", label: "CakePHP" },
+  Bootstrap: { slug: "bootstrap", label: "Bootstrap" },
   UIKit: { slug: "apple", label: "UIKit" },
   Shiny: { slug: "r", label: "Shiny" },
-  Docker: { slug: "docker", label: "Docker" },
+  "Chrome Extensions": { slug: "googlechrome", label: "Chrome Extensions" },
+  "Manifest V3": { slug: "googlechrome", label: "Manifest V3" },
   MariaDB: { slug: "mariadb", label: "MariaDB" },
+  SQLite: { slug: "sqlite", label: "SQLite" },
   "Core Data": { slug: "apple", label: "Core Data" },
   Leaflet: { slug: "leaflet", label: "Leaflet" },
-  Plotly: { slug: "plotly", label: "Plotly" },
-  PyMuPDF: { slug: "python", label: "PyMuPDF" }
+  Plotly: { slug: "plotly", label: "Plotly" }
 };
 
 export const responsibilities = [
@@ -295,12 +297,12 @@ export const responsibilities = [
   },
   {
     title: {
-      en: "AI-Enabled Tools",
-      zh: "AI 工具设计"
+      en: "Useful Tooling",
+      zh: "实用工具设计"
     },
     body: {
-      en: "AI appears as a product capability: translation, analysis, rewriting, and structured workflow support.",
-      zh: "AI 在这里更像产品能力本身，用于翻译、分析、改写与结构化流程支持。"
+      en: "The projects focus on practical workflows: browser automation, e-commerce operations, data visualization, and structured collaboration.",
+      zh: "这些项目聚焦实际工作流：浏览器自动化、电商运营、数据可视化与结构化协作。"
     }
   }
 ];
@@ -316,9 +318,9 @@ export const copy = {
     },
     hero: {
       eyebrow: "Software Portfolio",
-      title: "Building thoughtful software across AI, data, and product experiences.",
+      title: "Building thoughtful software across web, data, mobile, and product experiences.",
       description:
-        "I build practical software projects across AI, web development, data tools, mobile apps, and interactive systems.",
+        "I build practical software projects across web development, browser tools, data visualization, mobile apps, and interactive systems.",
       primaryCta: "Explore Projects",
       secondaryCta: "View GitHub",
       stats: {
@@ -328,27 +330,27 @@ export const copy = {
       },
       panelLabel: "Portfolio Snapshot",
       panel: {
-        projects: "A selection of projects across software, AI, and interactive product design.",
+        projects: "A selection of projects across software, browser tools, and interactive product design.",
         stacks: "Experience spanning frontend, backend, mobile development, and data-driven tools."
       },
       ribbonOne: "Full-stack delivery",
-      ribbonTwo: "AI workflow design",
+      ribbonTwo: "Browser tooling",
       ribbonThree: "Data storytelling"
     },
     about: {
       eyebrow: "About",
       title: "A practical builder with an eye for clarity and experience.",
       body:
-        "I enjoy building user-facing software that makes complex workflows feel clear and approachable, whether that means an AI resume assistant, an event platform, or a collaborative whiteboard.",
+        "I enjoy building user-facing software that makes repeated workflows feel clear and approachable, whether that means a YouTube skip extension, an e-commerce platform, or a collaborative whiteboard.",
       points: {
         one: "Comfortable moving between frontend polish, backend structure, and product thinking.",
-        two: "Interested in AI-assisted tooling, interactive systems, and useful everyday software.",
+        two: "Interested in browser tooling, interactive systems, and useful everyday software.",
         three: "Careful about privacy, presentation quality, and deployable project delivery."
       }
     },
     projects: {
       eyebrow: "Projects",
-      title: "A selection of projects across AI, web development, data tools, and interactive systems.",
+      title: "A selection of projects across web development, browser tools, data visualization, and interactive systems.",
       description:
         "These projects reflect how I design, build, and improve practical software experiences.",
       featuresLabel: "Key features",
@@ -365,14 +367,14 @@ export const copy = {
     },
     contact: {
       eyebrow: "Contact",
-      title: "Open to software, AI, and product-oriented opportunities.",
+      title: "Open to software, web, and product-oriented opportunities.",
       description:
         "You can find more of my work on GitHub. I am especially interested in learning-oriented, product-minded software opportunities.",
       githubLabel: "GitHub Profile",
       cta: "Open GitHub"
     },
     footer: {
-      note: "A bilingual portfolio focused on software, AI, and product development."
+      note: "A bilingual portfolio focused on software, web tools, and product development."
     },
     chatbot: {
       buttonLabel: "Open portfolio chatbot",
@@ -408,9 +410,9 @@ export const copy = {
     },
     hero: {
       eyebrow: "软件作品集",
-      title: "围绕 AI、数据与产品体验，持续构建有完成度的软件作品。",
+      title: "围绕 Web、数据、移动端与产品体验，持续构建有完成度的软件作品。",
       description:
-        "我关注 AI、Web 开发、数据工具、移动应用与交互式系统，也持续在这些方向打磨更实用的软件项目。",
+        "我关注 Web 开发、浏览器工具、数据可视化、移动应用与交互式系统，也持续在这些方向打磨更实用的软件项目。",
       primaryCta: "查看项目",
       secondaryCta: "访问 GitHub",
       stats: {
@@ -420,27 +422,27 @@ export const copy = {
       },
       panelLabel: "作品集概览",
       panel: {
-        projects: "涵盖软件开发、AI 应用与交互式产品设计的部分项目。",
+        projects: "涵盖软件开发、浏览器工具与交互式产品设计的部分项目。",
         stacks: "覆盖前端、后端、移动开发与数据驱动工具的实践经验。"
       },
       ribbonOne: "全栈交付",
-      ribbonTwo: "AI 工作流设计",
+      ribbonTwo: "浏览器工具",
       ribbonThree: "数据叙事"
     },
     about: {
       eyebrow: "关于我",
       title: "偏实战型的构建者，也重视表达清晰与体验质量。",
       body:
-        "我喜欢做面向真实使用场景的软件，把复杂流程整理成更清晰、更容易上手的体验，无论是 AI 简历助手、活动展示平台，还是协作式白板系统。",
+        "我喜欢做面向真实使用场景的软件，把重复流程整理成更清晰、更容易上手的体验，无论是 YouTube 跳过扩展、电商平台，还是协作式白板系统。",
       points: {
         one: "能够在前端呈现、后端结构与产品思考之间切换。",
-        two: "关注 AI 辅助工具、交互系统以及真正有用的日常软件。",
+        two: "关注浏览器工具、交互系统以及真正有用的日常软件。",
         three: "在公开展示时会主动考虑隐私、表达质量与可部署性。"
       }
     },
     projects: {
       eyebrow: "项目",
-      title: "这里展示了我在 AI、Web 开发、数据工具和交互式系统方向的部分项目。",
+      title: "这里展示了我在 Web 开发、浏览器工具、数据可视化和交互式系统方向的部分项目。",
       description:
         "这些项目体现了我在设计、实现与打磨软件体验上的一些实践。",
       featuresLabel: "核心特性",
@@ -457,14 +459,14 @@ export const copy = {
     },
     contact: {
       eyebrow: "联系",
-      title: "适合软件开发、AI 应用与产品导向岗位的作品展示。",
+      title: "适合软件开发、Web 工具与产品导向岗位的作品展示。",
       description:
         "如果你想了解更多我的项目，可以先从 GitHub 开始。我也很期待继续学习和参与产品导向的软件实践。",
       githubLabel: "GitHub 主页",
       cta: "打开 GitHub"
     },
     footer: {
-      note: "一个围绕软件、AI 与产品开发的双语作品集。"
+      note: "一个围绕软件、Web 工具与产品开发的双语作品集。"
     },
     chatbot: {
       buttonLabel: "打开作品集聊天助手",
